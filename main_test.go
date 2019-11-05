@@ -8,17 +8,25 @@ import (
 )
 
 func TestHappy(t *testing.T) {
-	res := server(500)
+	res := server(500, 100)
 
 	if res.StatusCode != 500 {
 		log.Fatal("wrong statusCode returned")
 	}
 }
 
-func server(input int) *http.Response {
+func TestHappyDisabled(t *testing.T) {
+	res := server(500, 0)
+
+	if res.StatusCode != 200 {
+		log.Fatal("wrong statusCode returned")
+	}
+}
+
+func server(input, freq int) *http.Response {
 	ts := httptest.NewServer(
 		http.HandlerFunc(
-			Handler(input),
+			Handler(input, freq),
 		),
 	)
 	defer ts.Close()

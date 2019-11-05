@@ -15,3 +15,9 @@ docker run -p 8080:8080 err0r500/chaos-container
 ```
 docker run -p 8080:8080 -e STATUS=503 err0r500/chaos-container
 ```
+
+- freq env var can be used in order to customize frequency of the response code (200 the rest of the time) 
+
+```
+docker run -p 8080:8080 -e STATUS=503 err0r500/chaos-container
+```
